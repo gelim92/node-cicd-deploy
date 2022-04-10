@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/app.js",
-    "lint": "eslint ./src/**/*.js"
+    "lint": "eslint ./src/**/*.js",
+    "docker:build": "docker build -t gerilm/node-cicd-deploy ./",
+    "docker:run": "docker run -p 4000:4000 gerilm/node-cicd-deploy"
   },
   "repository": {
     "type": "git",
