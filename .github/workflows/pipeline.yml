@@ -9,7 +9,6 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    node-version: [16.x]
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js 16
@@ -18,4 +17,4 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - run: npm ci
-    - run: npm lint
+    - run: npm run lint
