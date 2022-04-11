@@ -24,7 +24,6 @@ jobs:
     needs: lint
     runs-on: ubuntu-latest
     steps:
-    - run: echo ${{ secrets.DOCKERHUB_USERNAME }}
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
@@ -35,3 +34,10 @@ jobs:
       with:
         push: true
         tags: gerilm/node-cicd-deploy:latest
+
+  docker-deploy:
+    needs: docker-build-and-push
+    runs-on: ubuntu-latest
+    steps:
+    - name: Trigger Deployment
+      run: curl -H "Authorization: Bearer ${{ secrets.DEPLOYMENT_TOKEN }} ${{ secrets.DEPLOYMENT_URL }}"
