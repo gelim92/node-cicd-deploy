@@ -40,4 +40,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Trigger Deployment
-      run: curl -H "Authorization: Bearer ${{ secrets.DEPLOYMENT_TOKEN }} ${{ secrets.DEPLOYMENT_URL }}"
+      run: |
+        curl -H "Authorization: Bearer ${{ secrets.DEPLOYMENT_TOKEN }}" ${{ secrets.DEPLOYMENT_URL }}
