@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # env:
+# PORT - allow on ufw
 # DEPLOY_PORT - allow on ufw
 # DEPLOY_TOKEN
 
-npm run docker:run;
+docker run -d -p $PORT:4000 gerilm/node-cicd-deploy;
 
 sudo docker run -d \
 	-p $DEPLOY_PORT:8080 \
