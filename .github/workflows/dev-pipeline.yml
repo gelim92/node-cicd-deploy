@@ -1,0 +1,9 @@
+name: Dev Pipeline
+
+on:
+  push:
+    branches-ignore: [ main ]
+
+jobs:
+  run-tests:
+    uses: gerilm/node-cicd-deploy/.github/workflows/run-tests.yml@main

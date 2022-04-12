@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./src/app.js",
     "lint": "eslint ./src/**/*.js",
+    "test": "mocha ./src/**/*.test.js",
     "docker:build": "docker build -t gerilm/node-cicd-deploy ./",
     "docker:run": "docker run -p 4000:4000 gerilm/node-cicd-deploy"
   },
@@ -23,8 +24,10 @@
     "express": "4.17.3"
   },
   "devDependencies": {
+    "chai": "4.3.6",
     "eslint": "^8.13.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-plugin-import": "^2.26.0",
+    "mocha": "9.2.2"
   }
 }

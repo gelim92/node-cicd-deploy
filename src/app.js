@@ -1,8 +1,7 @@
 const express = require('express');
+const {getHelloWorld} = require('./hello');
 
 const app = express();
-
-const getHelloWorld = () => 'Hello World update 2!!!';
 
 app.get('/', (req, res) => {
   res.json({data: getHelloWorld()});
