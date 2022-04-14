@@ -9,8 +9,21 @@ jobs:
   run-tests:
     uses: gelim92/node-cicd-deploy/.github/workflows/run-tests.yml@main
 
-  docker-build-and-push:
+  create-tag:
     needs: run-tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.36.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true  
+
+  docker-build-and-push:
+    needs: create-tag
     runs-on: ubuntu-latest
     steps:
     - name: Login to DockerHub
