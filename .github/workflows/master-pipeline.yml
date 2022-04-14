@@ -12,11 +12,14 @@ jobs:
   create-tag:
     needs: run-tests
     runs-on: ubuntu-latest
+    outputs:
+      new-tag: ${{ steps.bump-and-push-tag.outputs.new_tag }}
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: '0'
     - name: Bump version and push tag
+      id: bump-and-push-tag
       uses: anothrNick/github-tag-action@1.36.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,7 +38,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: gerilm/node-cicd-deploy:latest
+        tags: gerilm/node-cicd-deploy:latest,gerilm/node-cicd-deploy:${{ needs.create-tag.outputs.new-tag }}
 
   docker-deploy:
     needs: docker-build-and-push
